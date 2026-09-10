@@ -1,0 +1,21 @@
+conversation_id,brand,customer_text,agent_text,intent,resolution
+1,Spotify,My premium subscription stopped working after I was charged,Sorry about that. We restored your Premium access after checking the account.,billing,restore paid access after billing check
+2,Spotify,I was charged twice for my subscription,We refunded the duplicate charge and sent confirmation by email.,billing,refund duplicate charge
+3,Spotify,How do I cancel Premium?,You can cancel Premium from your account subscription page. Your benefits continue until the next billing date.,cancellation,explain self-service cancellation
+4,Spotify,I cannot log in because I forgot my password,Use the password reset link on the login page and check your spam folder for the email.,account_access,send password reset steps
+5,Spotify,My account was hacked and the email changed,We secured the account and started an ownership verification flow.,account_security,secure account and verify ownership
+6,Spotify,The app keeps crashing on my iPhone,Please reinstall the latest app version and send us the device and app version if it continues.,technical_issue,troubleshoot app crash
+7,Spotify,Music keeps pausing every few seconds,Try a different network and disable Data Saver; we can investigate with device details if it persists.,playback,diagnose network playback
+8,Spotify,Why is my music playing from another device?,It looks like your account is active on another device. Sign out everywhere and change your password.,account_security,sign out everywhere and change password
+9,Spotify,Can I listen offline with Premium?,Yes. Download playlists while online, then use Offline Mode when you have no connection.,product_question,explain offline feature
+10,Spotify,My student discount disappeared,We checked eligibility and restored the student plan after verification.,plan_eligibility,verify student eligibility
+11,Spotify,The podcast episode is missing,Thanks for flagging it. We logged the missing episode for our content team to investigate.,content_issue,log missing content
+12,Spotify,How can I change my email address?,You can update your email under Account settings after confirming your password.,account_access,explain email update
+13,Spotify,There is a charge I do not recognize,Please do not share card details here. We need to verify the account privately before investigating the charge.,payment_dispute,private verification and investigate charge
+14,Spotify,My family plan members cannot join,Make sure each member is using the same home address and accepts the invitation while signed in.,plan_eligibility,troubleshoot family eligibility
+15,Spotify,The audio quality is terrible today,Please check the playback quality setting and your connection; we can troubleshoot further with device details.,playback,troubleshoot audio quality
+16,Spotify,I want a refund for my subscription,Refund eligibility depends on how and where you paid. Please contact the billing team privately with the receipt.,payment_dispute,route refund review privately
+17,Spotify,The verification email never arrived,Try resending it and check spam. If it still does not arrive, support can verify the account another way.,account_access,troubleshoot verification email
+18,Spotify,Can I use Spotify on my smart speaker?,Spotify works with supported smart speakers; connect it from the device maker's app and select Spotify.,product_question,explain device support
+19,Spotify,My playlist vanished,Please check Your Library filters and the correct account; support can investigate if the playlist is still missing.,content_issue,troubleshoot missing playlist
+20,Spotify,I need to change my plan,Open Account and choose Available plans to switch. The effective date depends on your current billing cycle.,plan_eligibility,explain plan change

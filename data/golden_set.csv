@@ -1,0 +1,151 @@
+id,brand,customer_text,intent,risk,human_reply_ok
+g001,Spotify,I was charged twice for Premium,billing,0,1
+g002,Spotify,I was charged today for Premium,billing,0,1
+g003,Spotify,I was charged after renewal for Premium,billing,0,1
+g004,Spotify,I was charged a second time for Premium,billing,0,1
+g005,Spotify,I was charged this month for Premium,billing,0,1
+g006,Spotify,I was charged for last month for Premium,billing,0,1
+g007,Spotify,I was charged after upgrading for Premium,billing,0,1
+g008,Spotify,I was charged unexpectedly for Premium,billing,0,1
+g009,Spotify,I was charged on my card for Premium,billing,0,1
+g010,Spotify,I was charged for a subscription for Premium,billing,0,1
+g011,Spotify,I was charged again for Premium,billing,0,1
+g012,Spotify,I was charged when I cancelled for Premium,billing,0,1
+g013,Spotify,I was charged but I was promised a trial for Premium,billing,0,1
+g014,Spotify,I was charged for Premium for Premium,billing,0,1
+g015,Spotify,I was charged and need help for Premium,billing,0,1
+g016,Spotify,How do I cancel my Premium plan?,cancellation,0,1
+g017,Spotify,How do I cancel my subscription plan?,cancellation,0,1
+g018,Spotify,How do I cancel my student plan?,cancellation,0,1
+g019,Spotify,How do I cancel my family plan?,cancellation,0,1
+g020,Spotify,How do I cancel my paid plan?,cancellation,0,1
+g021,Spotify,How do I cancel my current plan?,cancellation,0,1
+g022,Spotify,How do I cancel my monthly plan?,cancellation,0,1
+g023,Spotify,How do I cancel my annual plan?,cancellation,0,1
+g024,Spotify,How do I cancel my my plan?,cancellation,0,1
+g025,Spotify,How do I cancel my the account plan?,cancellation,0,1
+g026,Spotify,How do I cancel my today plan?,cancellation,0,1
+g027,Spotify,How do I cancel my before renewal plan?,cancellation,0,1
+g028,Spotify,How do I cancel my right now plan?,cancellation,0,1
+g029,Spotify,How do I cancel my without losing playlists plan?,cancellation,0,1
+g030,Spotify,How do I cancel my from my phone plan?,cancellation,0,1
+g031,Spotify,I cannot log into my account,account_access,0,1
+g032,Spotify,I cannot sign into my account,account_access,0,1
+g033,Spotify,I cannot get into my account,account_access,0,1
+g034,Spotify,I cannot access into my account,account_access,0,1
+g035,Spotify,I cannot sign into my account,account_access,0,1
+g036,Spotify,I cannot log into my account,account_access,0,1
+g037,Spotify,I cannot open into my account,account_access,0,1
+g038,Spotify,I cannot recover into my account,account_access,0,1
+g039,Spotify,I cannot verify into my account,account_access,0,1
+g040,Spotify,I cannot get into my account,account_access,0,1
+g041,Spotify,I cannot sign into my account,account_access,0,1
+g042,Spotify,I cannot log into my account,account_access,0,1
+g043,Spotify,I cannot access into my account,account_access,0,1
+g044,Spotify,I cannot enter into my account,account_access,0,1
+g045,Spotify,I cannot use into my account,account_access,0,1
+g046,Spotify,Someone changed my email my account,account_security,1,0
+g047,Spotify,Someone logged in my account,account_security,1,0
+g048,Spotify,Someone took over my account,account_security,1,0
+g049,Spotify,Someone was hacked my account,account_security,1,0
+g050,Spotify,Someone has an unknown login my account,account_security,1,0
+g051,Spotify,Someone changed my password my account,account_security,1,0
+g052,Spotify,Someone is compromised my account,account_security,1,0
+g053,Spotify,Someone was accessed my account,account_security,1,0
+g054,Spotify,Someone has another user my account,account_security,1,0
+g055,Spotify,Someone was stolen my account,account_security,1,0
+g056,Spotify,Someone is not mine my account,account_security,1,0
+g057,Spotify,Someone has a strange device my account,account_security,1,0
+g058,Spotify,Someone was hacked today my account,account_security,1,0
+g059,Spotify,Someone has fraud my account,account_security,1,0
+g060,Spotify,Someone looks unsafe my account,account_security,1,0
+g061,Spotify,The app is crashing on my phone,technical_issue,0,1
+g062,Spotify,The app is not opening on my phone,technical_issue,0,1
+g063,Spotify,The app is showing an error on my phone,technical_issue,0,1
+g064,Spotify,The app is freezing on my phone,technical_issue,0,1
+g065,Spotify,The app is closing on my phone,technical_issue,0,1
+g066,Spotify,The app is stuck on my phone,technical_issue,0,1
+g067,Spotify,The app is broken on my phone,technical_issue,0,1
+g068,Spotify,The app is slow on my phone,technical_issue,0,1
+g069,Spotify,The app is not loading on my phone,technical_issue,0,1
+g070,Spotify,The app is failing on my phone,technical_issue,0,1
+g071,Spotify,The app is blank on my phone,technical_issue,0,1
+g072,Spotify,The app is unresponsive on my phone,technical_issue,0,1
+g073,Spotify,The app is glitchy on my phone,technical_issue,0,1
+g074,Spotify,The app is down on my phone,technical_issue,0,1
+g075,Spotify,The app is stopping on my phone,technical_issue,0,1
+g076,Spotify,My music keeps pausing,playback,0,1
+g077,Spotify,My music keeps buffering,playback,0,1
+g078,Spotify,My music keeps skipping,playback,0,1
+g079,Spotify,My music keeps stuttering,playback,0,1
+g080,Spotify,My music keeps stopping,playback,0,1
+g081,Spotify,My music keeps playing quietly,playback,0,1
+g082,Spotify,My music keeps sounding bad,playback,0,1
+g083,Spotify,My music keeps cutting out,playback,0,1
+g084,Spotify,My music keeps playing slowly,playback,0,1
+g085,Spotify,My music keeps losing audio,playback,0,1
+g086,Spotify,My music keeps distorting,playback,0,1
+g087,Spotify,My music keeps not playing,playback,0,1
+g088,Spotify,My music keeps dropping,playback,0,1
+g089,Spotify,My music keeps starting over,playback,0,1
+g090,Spotify,My music keeps going silent,playback,0,1
+g091,Spotify,Can Spotify work offline?,product_question,0,1
+g092,Spotify,Can Spotify play on a speaker?,product_question,0,1
+g093,Spotify,Can Spotify download music?,product_question,0,1
+g094,Spotify,Can Spotify use on a TV?,product_question,0,1
+g095,Spotify,Can Spotify share a playlist?,product_question,0,1
+g096,Spotify,Can Spotify work abroad?,product_question,0,1
+g097,Spotify,Can Spotify support podcasts?,product_question,0,1
+g098,Spotify,Can Spotify play without data?,product_question,0,1
+g099,Spotify,Can Spotify connect to a car?,product_question,0,1
+g100,Spotify,Can Spotify offer lyrics?,product_question,0,1
+g101,Spotify,Can Spotify work on my watch?,product_question,0,1
+g102,Spotify,Can Spotify include audiobooks?,product_question,0,1
+g103,Spotify,Can Spotify support multiple devices?,product_question,0,1
+g104,Spotify,Can Spotify have a free tier?,product_question,0,1
+g105,Spotify,Can Spotify play with Bluetooth?,product_question,0,1
+g106,Spotify,How can I get the student plan?,plan_eligibility,0,1
+g107,Spotify,How can I get the family plan?,plan_eligibility,0,1
+g108,Spotify,How can I get the discount plan?,plan_eligibility,0,1
+g109,Spotify,How can I get the duo plan?,plan_eligibility,0,1
+g110,Spotify,How can I get the annual plan?,plan_eligibility,0,1
+g111,Spotify,How can I get the Premium plan?,plan_eligibility,0,1
+g112,Spotify,How can I get the new plan?,plan_eligibility,0,1
+g113,Spotify,How can I get the cheapest plan?,plan_eligibility,0,1
+g114,Spotify,How can I get the student discount plan?,plan_eligibility,0,1
+g115,Spotify,How can I get the family plan?,plan_eligibility,0,1
+g116,Spotify,How can I get the trial plan?,plan_eligibility,0,1
+g117,Spotify,How can I get the available plan?,plan_eligibility,0,1
+g118,Spotify,How can I get the eligible plan?,plan_eligibility,0,1
+g119,Spotify,How can I get the upgrade plan?,plan_eligibility,0,1
+g120,Spotify,How can I get the switch plan?,plan_eligibility,0,1
+g121,Spotify,My playlist is missing,content_issue,0,1
+g122,Spotify,My podcast episode is missing,content_issue,0,1
+g123,Spotify,My saved song is missing,content_issue,0,1
+g124,Spotify,My album is missing,content_issue,0,1
+g125,Spotify,My download is missing,content_issue,0,1
+g126,Spotify,My liked music is missing,content_issue,0,1
+g127,Spotify,My episode is missing,content_issue,0,1
+g128,Spotify,My playlist is missing,content_issue,0,1
+g129,Spotify,My song is missing,content_issue,0,1
+g130,Spotify,My podcast is missing,content_issue,0,1
+g131,Spotify,My library item is missing,content_issue,0,1
+g132,Spotify,My artist is missing,content_issue,0,1
+g133,Spotify,My track is missing,content_issue,0,1
+g134,Spotify,My show is missing,content_issue,0,1
+g135,Spotify,My music is missing,content_issue,0,1
+g136,Spotify,I need a refund for this charge,payment_dispute,1,0
+g137,Spotify,I need a charge for this charge,payment_dispute,1,0
+g138,Spotify,I need a payment for this charge,payment_dispute,1,0
+g139,Spotify,I need a subscription charge for this charge,payment_dispute,1,0
+g140,Spotify,I need a duplicate charge for this charge,payment_dispute,1,0
+g141,Spotify,I need a unknown payment for this charge,payment_dispute,1,0
+g142,Spotify,I need a money for this charge,payment_dispute,1,0
+g143,Spotify,I need a billing for this charge,payment_dispute,1,0
+g144,Spotify,I need a card charge for this charge,payment_dispute,1,0
+g145,Spotify,I need a purchase for this charge,payment_dispute,1,0
+g146,Spotify,I need a renewal for this charge,payment_dispute,1,0
+g147,Spotify,I need a unexpected charge for this charge,payment_dispute,1,0
+g148,Spotify,I need a transaction for this charge,payment_dispute,1,0
+g149,Spotify,I need a subscription for this charge,payment_dispute,1,0
+g150,Spotify,I need a fee for this charge,payment_dispute,1,0
