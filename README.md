@@ -1,4 +1,52 @@
-# Hiver SDE Intern - AI Customer Support Agent
+# Hiver SDE Intern — AI Customer Support Agent
+
+A reproducible Spotify customer-support agent built around the problem shape of the **Customer Support on Twitter** dataset. It accepts one customer message, classifies the intent, retrieves similar historical cases, drafts a reply grounded in the historical brand response, and decides whether to auto-assist or escalate to a human.
+
+The project emphasizes **evaluation and reliability** over fluent chatbot generation — a response that sounds helpful but gives unsafe billing or account-security guidance is treated as a failure. Every prediction exposes its confidence, historical evidence, escalation status, and escalation reason. The included run is fully deterministic and requires **no model download, API key, embedding service, or external LLM**.
+
+<p>
+  <img alt="Python" src="https://img.shields.io/badge/python-3.10%2B-blue">
+  <img alt="Tests" src="https://img.shields.io/badge/tests-pytest-informational">
+  <img alt="App" src="https://img.shields.io/badge/app-streamlit-ff4b4b">
+  <img alt="License" src="https://img.shields.io/badge/scope-take--home%20assignment-lightgrey">
+</p>
+
+---
+
+## Author
+
+| | |
+|---|---|
+| **Name** | Sanjay Choudhari |
+| **Email** | [2303031240034@paruluniversity.ac.in](mailto:2303031240034@paruluniversity.ac.in) |
+| **LinkedIn** | [linkedin.com/in/sanjaychoudhari09](https://www.linkedin.com/in/sanjaychoudhari09/) |
+| **Assignment** | Hiver SDE Intern Take-Home Task |
+
+---
+
+## Table of Contents
+
+1. [Overview](#1-overview)
+2. [Problem Framing](#2-problem-framing)
+3. [System Architecture](#3-system-architecture)
+4. [Key Components](#4-key-components)
+5. [Repository Structure](#5-repository-structure)
+6. [Setup](#6-setup)
+7. [Environment Variables](#7-environment-variables)
+8. [Running the Application](#8-running-the-application)
+9. [Reproducing the Results](#9-reproducing-the-results)
+10. [Evaluation](#10-evaluation)
+11. [Results](#11-results)
+12. [Failure Analysis](#12-failure-analysis)
+13. [What Is Misleading About My Headline Number?](#13-what-is-misleading-about-my-headline-number)
+14. [Design Decisions](#14-design-decisions)
+15. [Limitations](#15-limitations)
+16. [What I Would Do With One More Week](#16-what-i-would-do-with-one-more-week)
+17. [Testing](#17-testing)
+18. [Example](#18-example)
+19. [License / Assignment Notes](#19-license--assignment-notes)
+
+---
 
 ## 1. Overview
 
@@ -16,11 +64,11 @@ The selected brand is **Spotify**. The bundled historical examples contain repea
 
 For this prototype, a good support agent should:
 
-- identify the customer’s operational goal;
-- use a resolution pattern Spotify has historically used;
-- avoid requesting passwords, login codes, or card details in a public message;
-- auto-assist routine, sufficiently confident requests; and
-- escalate financial, security, sensitive, or uncertain requests with a clear reason.
+- Identify the customer's operational goal
+- Use a resolution pattern Spotify has historically used
+- Avoid requesting passwords, login codes, or card details in a public message
+- Auto-assist routine, sufficiently confident requests
+- Escalate financial, security, sensitive, or uncertain requests with a clear reason
 
 ### Scope and non-goals
 
@@ -34,17 +82,17 @@ The implemented path is:
 
 ```mermaid
 flowchart LR
-	A[Normalized historical CSV] --> B[load_examples]
-	B --> C[Keyword and phrase scoring]
-	B --> D[Token-overlap retrieval]
-	C --> E[Intent and confidence]
-	E --> D
-	D --> F[Up to two same-intent evidence cases]
-	E --> G[Escalation policy]
-	F --> H[Grounded draft reply]
-	G --> H
-	H --> I[Prediction output]
-	I --> J[Golden-set evaluation]
+    A[Normalized historical CSV] --> B[load_examples]
+    B --> C[Keyword and phrase scoring]
+    B --> D[Token-overlap retrieval]
+    C --> E[Intent and confidence]
+    E --> D
+    D --> F[Up to two same-intent evidence cases]
+    E --> G[Escalation policy]
+    F --> H[Grounded draft reply]
+    G --> H
+    H --> I[Prediction output]
+    I --> J[Golden-set evaluation]
 ```
 
 The current implementation does not perform raw-data cleaning, thread reconstruction, embeddings, vector search, or remote LLM generation. The normalized CSV is the starting point for the runnable demo.
@@ -63,7 +111,7 @@ The returned prediction includes `intent` and `confidence`. Confidence is capped
 
 ### Historical Resolution Retrieval
 
-`retrieve()` compares the input token set with historical customer-message token sets, filters to the predicted intent, sorts by Jaccard-style overlap, and returns at most two examples. There is no embedding model, index service, vector database, or top-k configuration beyond the function’s `limit=2` default.
+`retrieve()` compares the input token set with historical customer-message token sets, filters to the predicted intent, sorts by Jaccard-style overlap, and returns at most two examples. There is no embedding model, index service, vector database, or top-k configuration beyond the function's `limit=2` default.
 
 Each retrieved `Example` contains `customer_text`, `agent_text`, `intent`, and `resolution`. The `agent_text` values are returned as evidence and are used directly for routine draft wording.
 
@@ -79,9 +127,9 @@ This keeps the draft tied to historical support behavior and avoids inventing un
 
 The message is escalated when:
 
-- one of the sensitive terms in `ESCALATE_TERMS` is present, including `refund`, `fraud`, `unrecognized`, `hacked`, `identity`, or `charged twice`;
-- confidence is below `0.58`; or
-- the predicted intent is `payment_dispute` or `account_security`.
+- One of the sensitive terms in `ESCALATE_TERMS` is present, including `refund`, `fraud`, `unrecognized`, `hacked`, `identity`, or `charged twice`
+- Confidence is below `0.58`
+- The predicted intent is `payment_dispute` or `account_security`
 
 Otherwise, the result is treated as routine with the reason `routine request with sufficient confidence`. The current harness reports escalation rate and reasons; it does not calculate escalation precision, recall, F1, or unsafe-auto-handling rate.
 
@@ -105,12 +153,12 @@ Hiver/
 │   ├── __main__.py
 │   └── hiver_agent.py
 └── tests/
-	└── test_pipeline.py
+    └── test_pipeline.py
 ```
 
 ## 6. Setup
 
-Requires Python 3.10 or newer. Windows PowerShell setup:
+Requires **Python 3.10 or newer**. Windows PowerShell setup:
 
 ```powershell
 git clone https://github.com/Sanjaymo/hiver-support-agent.git
@@ -120,7 +168,17 @@ python -m venv .venv
 python -m pip install -r requirements.txt
 ```
 
-The project dependencies are `pytest`, `streamlit`, and `reportlab`. The agent logic itself uses the Python standard library.
+macOS / Linux setup:
+
+```bash
+git clone https://github.com/Sanjaymo/hiver-support-agent.git
+cd hiver-support-agent
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements.txt
+```
+
+The project dependencies are `pytest`, `streamlit`, and `reportlab`. The agent logic itself uses only the Python standard library.
 
 ## 7. Environment Variables
 
@@ -132,11 +190,11 @@ No environment variables, API keys, secrets, `.env` files, databases, or externa
 python -m streamlit run app.py
 ```
 
-Open `http://localhost:8501`. The Streamlit interface shows a customer-message input, intent, confidence, assisted/escalated status, reason, suggested reply, historical evidence, evaluation metrics, and PDF report download. The app supports light/dark themes and responsive mobile layout.
+Open [`http://localhost:8501`](http://localhost:8501). The Streamlit interface shows a customer-message input, intent, confidence, assisted/escalated status, reason, suggested reply, historical evidence, evaluation metrics, and PDF report download. The app supports light/dark themes and a responsive mobile layout.
 
 ## 9. Reproducing the Results
 
-### Option A - Included processed demonstration artifacts
+### Option A — Included processed demonstration artifacts
 
 This is the supported fast path. From the repository root:
 
@@ -161,7 +219,7 @@ majority_label=billing
 
 The provided Streamlit app also exposes **Download evaluation report (PDF)**. It generates the report at runtime; no prebuilt report artifact is required.
 
-### Option B - Rebuild from raw data
+### Option B — Rebuild from raw data
 
 The repository does not include a raw-data download or a script that reconstructs Twitter threads. To experiment with the Kaggle dataset, manually select one brand and normalize rows to the six columns used by `Example` and `data/demo_conversations.csv`:
 
@@ -198,9 +256,9 @@ The harness currently computes intent accuracy only. It does not compute macro-F
 
 ### Baselines
 
-1. **Trivial baseline:** always predicts the most common label, `billing`. It achieves `0.10` accuracy on the balanced set.
-2. **Simple baseline:** checks whether any keyword associated with the gold intent appears in the message. It achieves `0.64` keyword coverage. This is a coverage measure, not a complete classifier or reply system.
-3. **Final system:** combines phrase-aware keyword scoring, historical token-overlap similarity, same-intent retrieval, deterministic draft generation, and escalation policy. It achieves `0.96` accuracy.
+1. **Trivial baseline** — always predicts the most common label, `billing`. It achieves `0.10` accuracy on the balanced set.
+2. **Simple baseline** — checks whether any keyword associated with the gold intent appears in the message. It achieves `0.64` keyword coverage. This is a coverage measure, not a complete classifier or reply system.
+3. **Final system** — combines phrase-aware keyword scoring, historical token-overlap similarity, same-intent retrieval, deterministic draft generation, and escalation policy. It achieves `0.96` accuracy.
 
 ### Escalation Metrics
 
@@ -212,19 +270,19 @@ False auto-handling is more important than simple intent accuracy for this use c
 
 `judge_reply()` is an **offline judge proxy**, not an LLM-as-judge implementation. It awards one point for each:
 
-- **Grounded:** evidence exists and the draft indicates it is based on a similar case.
-- **Safe:** high-risk rows escalate; non-risk rows either do not escalate or contain a support-team handoff.
-- **Helpful:** predicted intent matches the label and the reply is at least 50 characters.
+- **Grounded** — evidence exists and the draft indicates it is based on a similar case.
+- **Safe** — high-risk rows escalate; non-risk rows either do not escalate or contain a support-team handoff.
+- **Helpful** — predicted intent matches the label and the reply is at least 50 characters.
 
 A total score of at least two is treated as acceptable by `judge_agreement()`.
 
 ### Human-vs-judge agreement
 
-The `human_reply_ok` column supplies the human rubric label in the golden file. `judge_agreement()` compares that binary label with the deterministic proxy decision and reports simple agreement: `0.80` on 150 examples. No correlation, Cohen’s kappa, or independent blind human study is implemented.
+The `human_reply_ok` column supplies the human rubric label in the golden file. `judge_agreement()` compares that binary label with the deterministic proxy decision and reports simple agreement: `0.80` on 150 examples. No correlation, Cohen's kappa, or independent blind human study is implemented.
 
 ## 11. Results
 
-| System | Intent metric | Reply/routing information |
+| System | Intent metric | Reply / routing information |
 |---|---:|---|
 | Majority baseline | 0.10 accuracy | No reply or routing logic |
 | Keyword baseline | 0.64 coverage | No retrieval, reply, or escalation metric |
@@ -234,11 +292,11 @@ These are measured on the included 150-example development set. They should not 
 
 ## 12. Failure Analysis
 
-1. **Overlapping billing language.** Example: “I was charged twice for my subscription” versus “There is a charge I do not recognize.” Both contain charge vocabulary but have different risk. Cause: lexical overlap. Improvement: add authorized/unauthorized state and report payment-dispute recall separately.
-2. **Short messages.** Example: `Help` or `Not working`. Cause: insufficient evidence. Current behavior is `unclassified` plus escalation when confidence is low. Improvement: ask a clarifying question before classification.
-3. **Multi-intent messages.** Example: “My account was hacked and I need a refund.” Cause: the output schema has one intent. Improvement: support multiple labels and route on the highest-risk label.
-4. **Retrieval leakage.** Example: “How can I get the cheapest plan?” is a templated paraphrase of the seed plan language. Cause: evaluation and retrieval share language patterns. Improvement: use a thread-held-out, time-split evaluation.
-5. **Stale historical guidance.** Example: “Open Account and choose Available plans.” Cause: historical UI and policy may change. Improvement: attach timestamps, region, policy version, and freshness checks to evidence.
+1. **Overlapping billing language** — "I was charged twice for my subscription" versus "There is a charge I do not recognize." Both contain charge vocabulary but have different risk. Cause: lexical overlap. Improvement: add authorized/unauthorized state and report payment-dispute recall separately.
+2. **Short messages** — "Help" or "Not working." Cause: insufficient evidence. Current behavior is `unclassified` plus escalation when confidence is low. Improvement: ask a clarifying question before classification.
+3. **Multi-intent messages** — "My account was hacked and I need a refund." Cause: the output schema has one intent. Improvement: support multiple labels and route on the highest-risk label.
+4. **Retrieval leakage** — "How can I get the cheapest plan?" is a templated paraphrase of the seed plan language. Cause: evaluation and retrieval share language patterns. Improvement: use a thread-held-out, time-split evaluation.
+5. **Stale historical guidance** — "Open Account and choose Available plans." Cause: historical UI and policy may change. Improvement: attach timestamps, region, policy version, and freshness checks to evidence.
 
 ## 13. What Is Misleading About My Headline Number?
 
@@ -248,7 +306,7 @@ The more meaningful next headline would be risk-weighted escalation recall on a 
 
 ## 14. Design Decisions
 
-The complete 15-item decision log is in [decision_log.md](decision_log.md). Key decisions include choosing Spotify, keeping ten operational intents, avoiding an external model dependency, using historical agent text as evidence, restricting retrieval to the predicted intent, escalating financial/security terms, returning an escalation reason, and documenting the limits of the bundled demo data.
+The complete 15-item decision log is in [`decision_log.md`](decision_log.md). Key decisions include choosing Spotify, keeping ten operational intents, avoiding an external model dependency, using historical agent text as evidence, restricting retrieval to the predicted intent, escalating financial/security terms, returning an escalation reason, and documenting the limits of the bundled demo data.
 
 ## 15. Limitations
 
@@ -278,7 +336,7 @@ python -m pytest -q
 python -m compileall -q app.py src scripts
 ```
 
-`tests/test_pipeline.py` covers security escalation, routine grounding, refund wording, account-security wording, phrase-based technical classification, unclassified low-confidence routing, plan eligibility, and the “cheapest plan” regression.
+`tests/test_pipeline.py` covers security escalation, routine grounding, refund wording, account-security wording, phrase-based technical classification, unclassified low-confidence routing, plan eligibility, and the "cheapest plan" regression.
 
 ## 18. Example
 
@@ -293,7 +351,7 @@ Historical evidence:
 Refund eligibility depends on how and where you paid. Please contact the billing team privately with the receipt.
 
 Suggested reply:
-Thanks for reaching out. I’m routing your refund or payment concern to our billing team for a private review. Refund eligibility depends on how and where you paid, so please share the receipt only through the official support channel and do not post payment details here.
+Thanks for reaching out. I'm routing your refund or payment concern to our billing team for a private review. Refund eligibility depends on how and where you paid, so please share the receipt only through the official support channel and do not post payment details here.
 
 Decision:
 ESCALATE
@@ -304,4 +362,8 @@ sensitive or financial-risk term detected: refund
 
 ## 19. License / Assignment Notes
 
-This repository was prepared for the Hiver SDE Intern take-home assignment. The bundled demo data is included only for reproducibility; the README does not claim that it redistributes the complete Kaggle dataset.
+This repository was prepared for the Hiver SDE Intern take-home assignment. The bundled demo data is included only for reproducibility; this README does not claim that it redistributes the complete Kaggle dataset.
+
+---
+
+<sub>Prepared by **Sanjay Choudhari** · [2303031240034@paruluniversity.ac.in](mailto:2303031240034@paruluniversity.ac.in) · [LinkedIn](https://www.linkedin.com/in/sanjaychoudhari09/) · Hiver SDE Intern Take-Home Task</sub>
