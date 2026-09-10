@@ -60,7 +60,7 @@ The evaluation script loads the historical seed, scores every golden example, an
 
 ### What the numbers do and do not establish
 
-The 10% majority result is expected because the golden set is balanced across ten intents. It is a useful sanity check, not a realistic production competitor. The 61% keyword coverage result says that recurring words are helpful but incomplete; it does not produce a reply or a routing reason. The 92% proposed result shows that adding historical overlap and explicit phrase rules improves this controlled set. It does not establish that the same improvement will hold on unseen brands, languages, or time periods.
+The 10% majority result is expected because the golden set is balanced across ten intents. It is a useful sanity check, not a realistic production competitor. The 64% keyword coverage result says that recurring words are helpful but incomplete; it does not produce a reply or a routing reason. The 96% proposed result shows that adding historical overlap and explicit phrase rules improves this controlled set. It does not establish that the same improvement will hold on unseen brands, languages, or time periods.
 
 The 21% escalation rate should be read together with escalation recall. A high handoff rate can hide a system that routes almost everything to humans; a low handoff rate can hide dangerous auto-handling. The next benchmark should include a confusion matrix and risk-weighted precision/recall for `account_security`, `payment_dispute`, and `billing` rather than relying on one aggregate accuracy number.
 
@@ -84,6 +84,6 @@ The 21% escalation rate should be read together with escalation recall. A high h
 - Inspect the evidence text returned with a prediction.
 - Test at least one refund, unknown-charge, hacked-account, playback, plan, and vague message.
 - Verify that high-risk drafts do not request credentials or card details.
-- Treat the 92% number as a development result until a time-split, thread-held-out set exists.
+- Treat the 96% number as a development result until a time-split, thread-held-out set exists.
 
 The companion [decision_log.md](decision_log.md) records the non-obvious choices and their tradeoffs. The Streamlit app also exports this report as a formatted PDF so the submission can be reviewed without a development environment.
